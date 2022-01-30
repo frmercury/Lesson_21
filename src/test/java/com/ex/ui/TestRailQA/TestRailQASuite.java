@@ -1,6 +1,5 @@
 package com.ex.ui.TestRailQA;
 
-import com.ex.ui.AccountLogin.MainPage;
 import com.ex.ui.BaseTest;
 import org.testng.annotations.Test;
 
@@ -12,5 +11,8 @@ public class TestRailQASuite extends BaseTest {
                     .inputEmail("testrail1235@mailforspam.com")
                     .inputPassword("zxasqw4567")
                     .clickOnLoginButton();
+            new MainPage(webDriver).clickOnTestCasesButton();
+            new TestCasesPage(webDriver).addNewTestCase();
+            new NewTestCaseCreationPage(webDriver).clickAddTestCaseButton();
     }
 }

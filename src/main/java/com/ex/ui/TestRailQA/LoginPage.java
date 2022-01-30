@@ -12,7 +12,6 @@ public class LoginPage extends BasePage {
     private By loginField = By.xpath("//input[@id='name']");
     private By passwordField = By.xpath("//input[@id='password']");
     private By loginButton = By.xpath("//button[@id='button_primary']");
-    private By testCaseButton = By.xpath("//a[contains(@href, 'suites')]");
 
     public LoginPage inputEmail(String email){
         findElement(webDriver, loginField).sendKeys(email);
