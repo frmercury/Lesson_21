@@ -6,13 +6,53 @@ import org.testng.annotations.Test;
 public class TestRailQASuite extends BaseTest {
 
         @Test
-        public void testLoginForm() {
-            new LoginPage(webDriver, "https://testrail1235.testrail.io/index.php?/auth/login")
-                    .inputEmail("testrail1235@mailforspam.com")
-                    .inputPassword("zxasqw4567")
-                    .clickOnLoginButton();
-            new MainPage(webDriver).clickOnTestCasesButton();
-            new TestCasesPage(webDriver).addNewTestCase();
-            new NewTestCaseCreationPage(webDriver).clickAddTestCaseButton();
-    }
+        public void newTestCaseCreationTest() {
+            new DashboardPage(webDriver)
+                    .clickOnTestCasesLink();
+            new TestCasesPage(webDriver)
+                    .addNewTestCase();
+            new NewTestCaseCreationPage(webDriver)
+                    .fillCaseTitleInput()
+                    .chooseCaseTemplateSteps()
+                    .chooseCaseTypeAutomated()
+                    .fillPreconditionField()
+                    .clickAddTestCaseButton();
+            new TestCasesPage(webDriver)
+                    .checkSuccessMessageIsDisplayed();
+        }
+
+        @Test
+        public void newTestRunCreationTest(){
+            new DashboardPage(webDriver)
+                    .clickOnTestRunsLink();
+            new TestRunsResultsPage(webDriver)
+                    .addNewTestRun();
+            new NewTestRunCreationPage(webDriver)
+                    .fillRunTitleInput()
+                    .fillDescriptionField()
+                    .clickAddTestCaseButton();
+            new TestRunPage(webDriver)
+                    .clickRandomTestCase();
+            new TestCasePage(webDriver)
+                    .clickAddTestCaseButton()
+                    .addRandomResultStatus()
+                    .checkStatusModification();
+        }
+
+    /**
+     * Вопрос
+     */
+//    @Test
+//    public void newTestCaseStatusModificationTest(){
+//        new DashboardPage(webDriver)
+//                .clickOnTestRunsLink();
+//        new TestRunsResultsPage(webDriver)
+//                .addNewTestRun();
+//        new NewTestRunCreationPage(webDriver)
+//                .fillRunTitleInput()
+//                .fillDescriptionField()
+//                .clickAddTestCaseButton();
+//        new TestRunPage(webDriver)
+//                .randomCaseSelection();
+//    }
 }
